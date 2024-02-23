@@ -1,22 +1,22 @@
 # PreferencesClass Usage Guide
 
-`PreferencesClass` simplifies managing application preferences in Android apps, facilitating the storage and retrieval of simple key-value pairs using Android's `SharedPreferences`. This utility class supports saving, retrieving, removing, and checking various data types, such as `String`, `Int`, `Boolean`, and `Float`, enhancing the ease of handling user settings and application configurations.
+`PreferencesClass` is a utility class designed for Android applications to simplify the management of application preferences using Android's `SharedPreferences`. 
+It provides an easy and efficient way to **store**, **retrieve**, **remove**, and **check various data types** such as `String`, `Int`, `Boolean`, and `Float`.
+This class is ideal for handling user settings and application configurations with minimal boilerplate code.
 
 ## Features
 
-- **Easy Storage and Retrieval**: Supports `String`, `Int`, `Boolean`, and `Float` data types.
-- **Preference Management**: Enables removal of specific preferences and checking for the existence of preference keys.
-- **Comprehensive Access**: Allows retrieval of all stored preferences and deletion of all preferences within a file.
-- **Flexible Saving Options**: Offers both immediate and asynchronous saving of preferences.
+- **Easy Storage and Retrieval**: Seamlessly store and retrieve String, Int, Boolean, and Float data types.
+- **Flexible Preference Management**: Offers functionality to remove specific preferences or check for the existence of preference keys.
+- **Comprehensive Access**: Facilitates retrieval of all stored preferences and supports deletion of all preferences within a specified preference file.
 
 ## Setup
-
-`SharedPreferences` are stored in the app's private storage space. No special permissions are required in your Android manifest file to use `SharedPreferences`.
+To use `PreferencesClass` in your Android project, simply copy the provided class into your project's source directory.
+Ensure that your application has access to Android's Context as it is required for accessing SharedPreferences.
 
 ## Usage Examples
 
 - ### Saving Preferences
-
 Save a `String` preference:
 
 ```kotlin
@@ -24,54 +24,47 @@ PreferencesClass.getInstance().setStringPreference(context, "user_name", "John D
 ```
 
 Save an `Int` preference:
-    
 ```kotlin
 PreferencesClass.getInstance().setIntPreference(context, "user_age", 30)
 ```
+- ### Saving Preferences in a Different Preference File
+
+Save a `Boolean` preference in a custom preference file:
+```kotlin
+Copy code
+PreferencesClass.getInstance().setBooleanPreference(context, "isPremiumUser", true, "app_info")
+```
+Save an `Int` preference in a custom preference file:
+```kotlin
+PreferencesClass.getInstance().setIntPreference(context, "user_age", 30, "user_info")
+```
 
 - ### Retrieving Preferences
-To retrieve a saved preference, use the corresponding get method. Here's how to get a `String` preference:
+Retrieve a `String` preference:
 
 ```kotlin
 val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name")
 ```
-
-To get an `Int` preference:
-
+Retrieve an `Int` preference:
 ```kotlin
-val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name")
+val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age")
 ```
 
-### Retrieving Preferences With Default Value
-To retrieve a saved preference, use the corresponding get method. Here's how to get a `String` preference:
-
-```kotlin
-val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name", "Default Name")
-```
-
-To get an `Int` preference:
-
-```kotlin
-val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name", "Default Name")
-```
-
-### Removing a Specific Preference
-To remove a specific preference:
-
-```kotlin
-PreferencesClass.getInstance().removePreference(context, "user_name")
-```
-
-### Checking for a Key
-To check if a preference key exists:
-
+- ### Checking for a Key's Existence
+Check if a preference key exists:
 ```kotlin
 val exists = PreferencesClass.getInstance().containsKey(context, "user_name")
 ```
 
-### Deleting All Preferences
-To clear all preferences:
+- ### Deleting Preferences
+Remove a specific preference:
+```kotlin
+PreferencesClass.getInstance().removePreference(context, "user_name")
+```
 
+- ### Delete all preferences within a specified file:
 ```kotlin
 PreferencesClass.getInstance().deleteAllSharedPreferences(context)
 ```
+
+This guide assumes context refers to an instance of Context (e.g., an Activity or Application context). Adjust your implementation accordingly to ensure proper context management.
