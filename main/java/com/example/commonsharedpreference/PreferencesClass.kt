@@ -13,19 +13,19 @@ class PreferencesClass {
 
     }
 
-    // Overload for getStringPreference with default value
+    // String Preference Functions
+    fun getStringPreference(context: Context, key: String): String =
+        getStringPreference(context, key, "", DEFAULT_PREF_NAME)
+
+    fun getStringPreference(context: Context, key: String, defaultValue: String): String =
+        getStringPreference(context, key, defaultValue, DEFAULT_PREF_NAME)
+
+
     fun getStringPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME, defaultValue: String = ""
-                           ): String {
-        val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            context: Context, key: String, defaultValue: String, fileName: String): String {
+        val sharedPref = context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
         return sharedPref.getString(key, defaultValue) ?: defaultValue
     }
-
-    // Overload for getStringPreference without default value parameter
-    fun getStringPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME
-                           ): String = getStringPreference(context, key, prefName, "")
-
 
     fun setStringPreference(
             context: Context, key: String, value: String, prefName: String = DEFAULT_PREF_NAME
@@ -37,16 +37,16 @@ class PreferencesClass {
         }
     }
 
-    fun getIntPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME, defaultValue: Int = 0
-                        ): Int {
-        val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+    fun getIntPreference(context: Context, key: String): Int =
+        getIntPreference(context, key, 0, DEFAULT_PREF_NAME)
+
+    fun getIntPreference(context: Context, key: String, defaultValue: Int): Int =
+        getIntPreference(context, key, defaultValue, DEFAULT_PREF_NAME)
+
+    fun getIntPreference(context: Context, key: String, defaultValue: Int, fileName: String): Int {
+        val sharedPref = context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
         return sharedPref.getInt(key, defaultValue)
     }
-
-    fun getIntPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME
-                        ): Int = getIntPreference(context, key, prefName, 0)
 
 
     fun setIntPreference(
@@ -59,16 +59,17 @@ class PreferencesClass {
         }
     }
 
-    fun getBooleanPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME, defaultValue: Boolean = false
-                            ): Boolean {
-        val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-        return sharedPref.getBoolean(key, defaultValue)
-    }
+    fun getBooleanPreference(context: Context, key: String): Boolean =
+        getBooleanPreference(context, key, false, DEFAULT_PREF_NAME)
+
+    fun getBooleanPreference(context: Context, key: String, defaultValue: Boolean): Boolean =
+        getBooleanPreference(context, key, defaultValue, DEFAULT_PREF_NAME)
 
     fun getBooleanPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME
-                            ): Boolean = getBooleanPreference(context, key, prefName, false)
+            context: Context, key: String, defaultValue: Boolean, fileName: String): Boolean {
+        val sharedPref = context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+        return sharedPref.getBoolean(key, defaultValue)
+    }
 
     fun setBooleanPreference(
             context: Context, key: String, value: Boolean, prefName: String = DEFAULT_PREF_NAME
@@ -80,16 +81,17 @@ class PreferencesClass {
         }
     }
 
-    fun getFloatPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME, defaultValue: Float = 0.0f
-                          ): Float {
-        val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-        return sharedPref.getFloat(key, defaultValue)
-    }
+    fun getFloatPreference(context: Context, key: String): Float =
+        getFloatPreference(context, key, 0.0f, DEFAULT_PREF_NAME)
+
+    fun getFloatPreference(context: Context, key: String, defaultValue: Float): Float =
+        getFloatPreference(context, key, defaultValue, DEFAULT_PREF_NAME)
 
     fun getFloatPreference(
-            context: Context, key: String, prefName: String = DEFAULT_PREF_NAME
-                          ): Float = getFloatPreference(context, key, prefName, 0.0f)
+            context: Context, key: String, defaultValue: Float, fileName: String): Float {
+        val sharedPref = context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+        return sharedPref.getFloat(key, defaultValue)
+    }
 
     fun setFloatPreference(
             context: Context, key: String, value: Float, prefName: String = DEFAULT_PREF_NAME
@@ -100,14 +102,17 @@ class PreferencesClass {
             apply()
         }
     }
+
     fun containsKey(context: Context, key: String, prefName: String = DEFAULT_PREF_NAME): Boolean {
         val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
         return sharedPref.contains(key)
     }
+
     fun getAllPreferences(context: Context, prefName: String = DEFAULT_PREF_NAME): Map<String, *> {
         val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
         return sharedPref.all
     }
+
     fun removePreference(context: Context, key: String, prefName: String = DEFAULT_PREF_NAME) {
         val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
@@ -115,6 +120,7 @@ class PreferencesClass {
             apply()
         }
     }
+
     fun deleteAllSharedPreferences(context: Context, prefName: String = DEFAULT_PREF_NAME) {
         val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
