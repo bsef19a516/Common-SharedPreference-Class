@@ -16,7 +16,7 @@ Ensure that your application has access to Android's Context as it is required f
 
 ## Usage Examples
 
-- ### Saving Preferences
+## Saving Preferences
 Save a `String` preference:
 
 ```kotlin
@@ -27,7 +27,7 @@ Save an `Int` preference:
 ```kotlin
 PreferencesClass.getInstance().setIntPreference(context, "user_age", 30)
 ```
-- ### Saving Preferences in a Different Preference File
+## Saving Preferences in a Different Preference File
 
 Save a `Boolean` preference in a custom preference file:
 ```kotlin
@@ -38,7 +38,7 @@ Save an `Int` preference in a custom preference file:
 PreferencesClass.getInstance().setIntPreference(context, "user_age", 30, "user_info")
 ```
 
-- ### Retrieving Preferences
+## Retrieving Preferences
 Retrieve a `String` preference:
 
 ```kotlin
@@ -49,7 +49,7 @@ Retrieve an `Int` preference:
 val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age")
 ```
 
-- ### Retrieving Preferences with **default value**
+## Retrieving Preferences with **default value**
 Retrieve a `String` preference:
 
 ```kotlin
@@ -61,7 +61,7 @@ Retrieve an `Int` preference:
 val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age",50)
 ```
 
-- ### Retrieving Preferences with different file
+## Retrieving Preferences with different file
 Retrieve a `String` preference:
 
 ```kotlin
@@ -73,19 +73,19 @@ Retrieve an `Int` preference:
 val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age",50,"newFile")
 ```
 
-- ### Checking for a Key's Existence
+## Checking for a Key's Existence
 Check if a preference key exists:
 ```kotlin
 val exists = PreferencesClass.getInstance().containsKey(context, "user_name")
 ```
 
-- ### Deleting Preferences
+## Deleting Preferences
 Remove a specific preference:
 ```kotlin
 PreferencesClass.getInstance().removePreference(context, "user_name")
 ```
 
-- ### Delete all preferences within a specified file:
+## Delete all preferences within a specified file:
 ```kotlin
 PreferencesClass.getInstance().deleteAllSharedPreferences(context)
 ```
