@@ -16,7 +16,7 @@ Ensure that your application has access to Android's Context as it is required f
 
 ## Usage Examples
 
-## Saving Preferences
+## Saving into Preferences
 Save a `String` preference:
 
 ```kotlin
