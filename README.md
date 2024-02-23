@@ -49,7 +49,7 @@ Retrieve an `Int` preference:
 val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age")
 ```
 
-- ### Retrieving Preferences with `default value`
+- ### Retrieving Preferences with **default value**
 Retrieve a `String` preference:
 
 ```kotlin
