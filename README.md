@@ -15,7 +15,7 @@
 
 ## Usage Examples
 
-### Saving Preferences
+- ### Saving Preferences
 
 Save a `String` preference:
 
@@ -29,7 +29,20 @@ Save an `Int` preference:
 PreferencesClass.getInstance().setIntPreference(context, "user_age", 30)
 ```
 
-### Retrieving Preferences
+- ### Retrieving Preferences
+To retrieve a saved preference, use the corresponding get method. Here's how to get a `String` preference:
+
+```kotlin
+val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name")
+```
+
+To get an `Int` preference:
+
+```kotlin
+val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name")
+```
+
+### Retrieving Preferences With Default Value
 To retrieve a saved preference, use the corresponding get method. Here's how to get a `String` preference:
 
 ```kotlin
