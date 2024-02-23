@@ -112,7 +112,29 @@ val allPrefs = PreferencesClass.getInstance().getAllPreferences(context, "Custom
 for ((key, value) in allPrefs) {
     Log.d("Preferences", "Key: $key, Value: $value")
 }
-
 ```
+
+## Understanding `.commit()` vs `.apply()`
+
+When you're modifying the `PreferencesClass` to suit your specific needs, it's crucial to understand the difference between using `.commit()` and `.apply()` methods for saving SharedPreferences.
+
+### `.commit()`:
+- Saves the changes to the SharedPreferences **synchronously**, blocking the main thread until the save operation is completed.
+- Returns a boolean value indicating the success or failure of the save operation.
+- Should be used when you need to ensure the data is persisted immediately and if the result of the operation must be checked.
+- Note: Using `.commit()` for large sets of data or frequent operations can lead to performance issues or ANR (Application Not Responding) dialogs due to its synchronous nature.
+
+### `.apply()`:
+- Saves the changes to the SharedPreferences **asynchronously**, without blocking the main thread.
+- Does not return any value; it assumes the operation succeeds.
+- Changes made with `.apply()` are written to memory immediately and flushed to disk on a separate thread.
+- Recommended for most use cases where immediate persistence is not critical and when the operation's success does not need to be verified.
+
+### Usage Considerations:
+- **Use `.apply()`** for non-critical, frequent updates to shared preferences where the timing of the save is not crucial.
+- **Opt for `.commit()`** when it's essential to know the outcome of the save operation or when immediate persistence is necessary (e.g., before the process is terminated).
+
+By understanding these differences, you can modify the `PreferencesClass` to better suit your application's needs, choosing the appropriate method for saving preferences based on your specific requirements.
+
 
 This guide assumes context refers to an instance of Context (e.g., an Activity or Application context). Adjust your implementation accordingly to ensure proper context management.
