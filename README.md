@@ -31,7 +31,6 @@ PreferencesClass.getInstance().setIntPreference(context, "user_age", 30)
 
 Save a `Boolean` preference in a custom preference file:
 ```kotlin
-Copy code
 PreferencesClass.getInstance().setBooleanPreference(context, "isPremiumUser", true, "app_info")
 ```
 Save an `Int` preference in a custom preference file:
@@ -50,6 +49,30 @@ Retrieve an `Int` preference:
 val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age")
 ```
 
+- ### Retrieving Preferences with `default value`
+Retrieve a `String` preference:
+
+```kotlin
+val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name","defaultValue")
+```
+Retrieve an `Int` preference:
+```kotlin
+//50 is default value
+val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age",50)
+```
+
+- ### Retrieving Preferences with different file
+Retrieve a `String` preference:
+
+```kotlin
+val userName = PreferencesClass.getInstance().getStringPreference(context, "user_name","defaultvalue","newFile")
+```
+Retrieve an `Int` preference:
+```kotlin
+//50 is default value
+val userAge = PreferencesClass.getInstance().getIntPreference(context, "user_age",50,"newFile")
+```
+
 - ### Checking for a Key's Existence
 Check if a preference key exists:
 ```kotlin
@@ -65,6 +88,31 @@ PreferencesClass.getInstance().removePreference(context, "user_name")
 - ### Delete all preferences within a specified file:
 ```kotlin
 PreferencesClass.getInstance().deleteAllSharedPreferences(context)
+```
+## Retrieving All Preferences
+
+The `getAllPreferences` function provides an easy way to retrieve all key-value pairs stored in a specific SharedPreferences file. 
+This can be particularly useful for debugging purposes or when you need to display all user preferences.
+
+```kotlin
+val allPrefs = PreferencesClass.getInstance().getAllPreferences(context)
+for ((key, value) in allPrefs) {
+    Log.d("Preferences", "Key: $key, Value: $value")
+}
+
+```
+
+## Retrieving All Preferences With Custom File
+
+The `getAllPreferences` function provides an easy way to retrieve all key-value pairs stored in a specific SharedPreferences file.
+This can be particularly useful for debugging purposes or when you need to display all user preferences.
+
+```kotlin
+val allPrefs = PreferencesClass.getInstance().getAllPreferences(context, "CustomPrefName")
+for ((key, value) in allPrefs) {
+    Log.d("Preferences", "Key: $key, Value: $value")
+}
+
 ```
 
 This guide assumes context refers to an instance of Context (e.g., an Activity or Application context). Adjust your implementation accordingly to ensure proper context management.
